@@ -6,13 +6,9 @@
       <div v-if="loading">loading...</div>
       <div v-else>
         <div v-for="b in boards" :key="b.id">
-          {{ b }}
+          <pre>{{ b }}</pre>
         </div>
       </div>
-      <ul>
-        <li><router-link to="/b/1">Board 1</router-link></li>
-        <li><router-link to="/b/2">Board 2</router-link></li>
-      </ul>
     </div>
   </div>
 </template>
@@ -33,6 +29,9 @@ export default{
       board.fetch()
       .then(data => {
         this.boards = data
+      })
+      .finally(() => {
+        this.loading = false
       })
     }
   }

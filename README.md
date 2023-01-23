@@ -1,6 +1,10 @@
 # trello_clone
 
-https://inf.run/dn7K 강의를 보고 제작한 트렐로 클론 프로젝트 입니다.
+**[인프런의 트렐로 개발로 배우는 Vuejs, Vuex, Vue-Router 프론트엔드 실전 기술](https://inf.run/dn7K)** 강의를 보고 제작한 트렐로 클론 프로젝트 입니다.
+
+## 더 자세한 코드(강의자료)
+
+[https://github.com/jungeu1509/lecture-vue-trello](https://github.com/jungeu1509/lecture-vue-trello)
 
 
 # Vue.js

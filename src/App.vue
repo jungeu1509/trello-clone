@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <Navbar />
-    <router-view></router-view>
+    <router-view class="container"></router-view>
   </div>
 </template>
 
@@ -46,6 +46,10 @@ html, body, #app {
 .btn-success {
   background-color: #5aac44;
   box-shadow: 0 1px 0 #519839;
+}
+.btn:disabled {
+  background-color: #bec4bba7;
+  box-shadow: none;
 }
 .form-control {
   width: 100%;

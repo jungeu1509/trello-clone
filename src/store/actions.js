@@ -1,6 +1,7 @@
-import { board, auth, card } from "../api";
+import { board, list, card, auth } from "../api";
 
 const actions = {
+  // Board
   ADD_BOARD(_, { title }) {
     return board.create(title).then(data => data.item);
   },
@@ -17,12 +18,30 @@ const actions = {
   DELETE_BOARD(_, { id }) {
     return board.destroy(id);
   },
-  LOGIN({ commit }, { email, password }) {
-    return auth
-      .login(email, password)
-      .then(({ accessToken }) => commit("LOGIN", accessToken));
+  UPDATE_BOARD({ dispatch, state }, { id, title, bgColor }) {
+    return board
+      .update(id, { title, bgColor })
+      .then(() => dispatch("FETCH_BOARD", { id: state.board.id }));
   },
 
+  // List
+  ADD_LIST({ dispatch, state }, { title, boardId, pos }) {
+    return list
+      .create({ title, boardId, pos })
+      .then(() => dispatch("FETCH_BOARD", { id: state.board.id }));
+  },
+  UPDATE_LIST({ dispatch, state }, { id, pos, title }) {
+    return list
+      .update(id, { pos, title })
+      .then(() => dispatch("FETCH_BOARD", { id: state.board.id }));
+  },
+  DELETE_LIST({ dispatch, state }, { id }) {
+    return list
+      .destroy(id)
+      .then(() => dispatch("FETCH_BOARD", { id: state.board.id }));
+  },
+
+  // Card
   ADD_CARD({ dispatch, state }, { title, listId, pos }) {
     return card
       .create(title, listId, pos)
@@ -42,6 +61,13 @@ const actions = {
     return card.destroy(id).then(() => {
       dispatch("FETCH_BOARD", { id: state.board.id });
     });
+  },
+
+  // Auth
+  LOGIN({ commit }, { email, password }) {
+    return auth
+      .login(email, password)
+      .then(({ accessToken }) => commit("LOGIN", accessToken));
   }
 };
 

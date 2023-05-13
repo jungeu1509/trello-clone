@@ -37,12 +37,21 @@ export const board = {
   },
   destroy(id) {
     return request("delete", `/boards/${id}`);
+  },
+  update(id, payload) {
+    return request("put", `/boards/${id}`, payload);
   }
 };
 
-export const auth = {
-  login(email, password) {
-    return request("post", "/login", { email, password });
+export const list = {
+  create(payload) {
+    return request("post", "/lists", payload);
+  },
+  update(id, payload) {
+    return request("put", `/lists/${id}`, payload);
+  },
+  destroy(id) {
+    return request("delete", `/lists/${id}`);
   }
 };
 
@@ -58,5 +67,11 @@ export const card = {
   },
   destroy(id) {
     return request("delete", `/cards/${id}`);
+  }
+};
+
+export const auth = {
+  login(email, password) {
+    return request("post", "/login", { email, password });
   }
 };
